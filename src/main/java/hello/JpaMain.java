@@ -19,12 +19,14 @@ public class JpaMain {
 		tx.begin();
 		try {
 			// INSERT START
-			/*
-			Member member = new Member();
-			member.setId(2L);
-			member.setName("HelloB");
-			em.persist(member);
-			*/
+			//Member member = new Member();
+			//member.setId(101L);
+			//member.setName("Hello JPA");
+			//em.persist(member);
+
+			//Member findMember = em.find(Member.class, 101L);
+			//System.out.println("find Member ID = " + findMember.getId());
+			//System.out.println("find Member NAME = " + findMember.getName());
 
 			// SELECT & UPDATE
 			/*
@@ -34,14 +36,27 @@ public class JpaMain {
 
 			// ex ) JPQL의 경우 From절에 사용된 테이블명이 실제 Java 객체와 매핑됨
 			// 기본 AnsiQuery는 모두 사용 가능
-			List<Member> selectMFromMember = em.createQuery("select m from Member as m", Member.class)
+			/*List<Member> selectMFromMember = em.createQuery("select m from Member as m", Member.class)
 					.setFirstResult(1)
 					.setMaxResults(10)
 					.getResultList();
 
 			for (Member member : selectMFromMember) {
 				System.out.println("member Name : " + member.getName());
-			}
+			}*/
+
+			// 영속
+			// Member member1 = new Member(150L, "A");
+			// Member member2 = new Member(160L, "B");
+			// em.persist(member1);
+			// em.persist(member2);
+
+			// Member member = em.find(Member.class, 150L);
+			// member.setName("ZZZZZ");
+
+			Member member = new Member(200L, "member200");
+			em.persist(member);
+
 			// 커밋을 하지않을경우, 모든 변경사항은 반영되지 않음
 			tx.commit();
 		} catch (Exception e) {
