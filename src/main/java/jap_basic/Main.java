@@ -1,4 +1,4 @@
-package jap-basic;
+package jap_basic;
 
 public class Main {
 	public static void main(String[] args) {
