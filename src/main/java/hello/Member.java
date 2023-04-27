@@ -6,18 +6,28 @@ import lombok.*;
 import javax.persistence.*;
 import java.util.Date;
 
-@Entity
 @Getter
 @Setter
+// @Entity
 public class Member {
-
-	@Id // PK 매핑
-	@GeneratedValue(strategy = GenerationType.IDENTITY) // 방언에 따라 자동 지정, 기본값
+	@Id @GeneratedValue(strategy = GenerationType.AUTO)
+	@Column(name = "MEMBER_ID")
 	private Long id;
 
-	@Column(name = "name") // DB컬럼명은 name
+	@Column(name = "USERNAME")
 	private String username;
 
+// @Column(name = "TEAM_ID")
+// private Long teamId;
+	@ManyToOne // 회원은 N이고 팀은 1이기 때문
+	@JoinColumn(name = "TEAM_ID") // 연결할 컬럼명
+	private Team team;
+
 	public Member() {
+	}
+
+	public void chageTeam(Team team) {
+		this.team = team;
+		team.getMembers().add(this);
 	}
 }
