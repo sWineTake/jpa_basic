@@ -1,21 +1,23 @@
 package hello;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import com.sun.istack.NotNull;
+import lombok.*;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.Date;
 
-@Entity // JPA를 사용하기위해 무조건 필수
+@Entity
 @Getter
 @Setter
-@NoArgsConstructor
-@AllArgsConstructor
 public class Member {
 
-	@Id // PK
+	@Id // PK 매핑
+	@GeneratedValue(strategy = GenerationType.IDENTITY) // 방언에 따라 자동 지정, 기본값
 	private Long id;
-	private String name;
+
+	@Column(name = "name") // DB컬럼명은 name
+	private String username;
+
+	public Member() {
+	}
 }

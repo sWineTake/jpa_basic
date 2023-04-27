@@ -50,12 +50,18 @@ public class JpaMain {
 			// Member member2 = new Member(160L, "B");
 			// em.persist(member1);
 			// em.persist(member2);
-
 			// Member member = em.find(Member.class, 150L);
 			// member.setName("ZZZZZ");
 
-			Member member = new Member(200L, "member200");
+			// @Enumerated 설정 & IDENTITY 설정
+			Member member = new Member();
+			member.setUsername("B");
+			// member.setRoleType(RoleType.ADMIN);
+
+			System.out.println("===============");
 			em.persist(member);
+
+			System.out.println("===============");
 
 			// 커밋을 하지않을경우, 모든 변경사항은 반영되지 않음
 			tx.commit();
