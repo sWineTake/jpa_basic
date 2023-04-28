@@ -8,7 +8,7 @@ import javax.persistence.*;
 @Getter
 @Setter
 @Entity
-public class OrderItem {
+public class OrderItem extends TBaseEntity{
 
 	@Id @GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "ORDER_ITEM_ID")
@@ -20,7 +20,7 @@ public class OrderItem {
 
 	@ManyToOne
 	@JoinColumn(name = "ITEM_ID")
-	private Item item;
+	private Items item;
 	private int orderPrice;
 	private int count;
 }

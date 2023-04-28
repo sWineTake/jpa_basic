@@ -9,19 +9,19 @@ import javax.persistence.*;
 @Entity
 @Getter
 @Setter
-public class CategoryItem {
+public class CategoryItem extends TBaseEntity{
 
 	@Id @GeneratedValue
 	@Column(name = "CATEGORY_ITEM_ID")
 	private Long id;
 
-	@OneToMany
+	@ManyToOne
 	@JoinColumn(name = "CATEGORY_ID")
 	private Category category;
 
-	@OneToMany
+	@ManyToOne
 	@JoinColumn(name = "ITEM_ID")
-	private Item item;
+	private Items item;
 
 
 }

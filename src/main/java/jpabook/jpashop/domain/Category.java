@@ -10,8 +10,7 @@ import java.util.List;
 @Setter
 @Getter
 @Entity
-public class Category {
-
+public class Category extends TBaseEntity{
 	@Id @GeneratedValue
 	@Column(name = "CATEGORY_ID")
 	private Long id;
@@ -26,5 +25,4 @@ public class Category {
 
 	@OneToMany(mappedBy = "category")
 	private List<CategoryItem> categoryItems = new ArrayList<>();
-
 }
