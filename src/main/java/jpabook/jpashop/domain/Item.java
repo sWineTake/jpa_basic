@@ -4,6 +4,8 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Getter
 @Setter
@@ -16,6 +18,9 @@ public class Item {
 	private String name;
 	private int price;
 	private int stockQuantitiy;
+
+	@OneToMany(mappedBy = "item")
+	private List<CategoryItem> categoryItems = new ArrayList<>();
 }
 
 

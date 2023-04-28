@@ -10,7 +10,7 @@ import java.util.List;
 @Getter
 @Setter
 @Entity
-public class Member {
+public class Members {
 	@Id @GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "MEMBER_ID")
 	private Long id;

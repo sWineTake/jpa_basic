@@ -16,11 +16,8 @@ public class Team {
 	private Long id;
 	private String name;
 
-	@OneToMany(mappedBy = "team") // 1:N 매핑에서, Member입장에서 매핑된 변수명을 적어주시면됩니다.
+	@OneToMany
+	@JoinColumn(name = "TEAM_ID")
 	private List<Member> members = new ArrayList<>();
 
-	public void addMember(Member member) {
-		this.members.add(member);
-		member.setTeam(this);
-	}
 }

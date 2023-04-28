@@ -19,7 +19,7 @@ public class Order {
 
 	@ManyToOne
 	@JoinColumn(name = "MEMBER_ID")
-	private Member member;
+	private Members member;
 
 	@OneToMany(mappedBy = "order")
 	private List<OrderItem> orderItems = new ArrayList<>();
@@ -33,5 +33,9 @@ public class Order {
 
 	@Enumerated(EnumType.STRING)
 	private OrderStatus status;
+
+	@OneToOne
+	@JoinColumn(name = "DELIVERY_ID")
+	private Delivery delivery;
 
 }

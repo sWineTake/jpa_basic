@@ -4,11 +4,13 @@ import com.sun.istack.NotNull;
 import lombok.*;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 @Getter
 @Setter
-// @Entity
+@Entity
 public class Member {
 	@Id @GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "MEMBER_ID")
@@ -17,17 +19,14 @@ public class Member {
 	@Column(name = "USERNAME")
 	private String username;
 
-// @Column(name = "TEAM_ID")
-// private Long teamId;
-	@ManyToOne // 회원은 N이고 팀은 1이기 때문
-	@JoinColumn(name = "TEAM_ID") // 연결할 컬럼명
-	private Team team;
+	// @OneToOne
+	// @JoinColumn(name = "LOCKER_ID")
+	@OneToOne(mappedBy = "member")
+	private Locker locker;
+
+	@OneToMany(mappedBy = "members")
+	private List<MemberProduct> memberProduct = new ArrayList<>();
 
 	public Member() {
-	}
-
-	public void chageTeam(Team team) {
-		this.team = team;
-		team.getMembers().add(this);
 	}
 }
