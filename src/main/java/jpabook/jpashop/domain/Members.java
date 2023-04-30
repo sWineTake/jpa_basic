@@ -15,9 +15,9 @@ public class Members extends TBaseEntity{
 	@Column(name = "MEMBER_ID")
 	private Long id;
 	private String name;
-	private String city;
-	private String street;
-	private String zipcode;
+
+	@Embedded
+	private Adress adress;
 
 	@OneToMany(mappedBy = "member")
 	private List<Order> orders = new ArrayList<>();

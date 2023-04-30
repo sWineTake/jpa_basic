@@ -1,9 +1,6 @@
 package hello;
 
-import org.hibernate.Hibernate;
-
 import javax.persistence.*;
-import java.util.List;
 
 public class JpaMain {
 
@@ -17,19 +14,29 @@ public class JpaMain {
 		EntityTransaction tx = em.getTransaction();
 		tx.begin();
 		try {
-			Child child1 = new Child();
-			Child child2 = new Child();
 
-			Parent parent = new Parent();
-			parent.addChild(child1);
-			parent.addChild(child2);
+			Member member = new Member();
+			member.setUsername("member1");
+			member.setHomeAdress(new Adress("city1", "street1", "zipcode1"));
+			member.getFavoritFoods().add("치킨");
+			member.getFavoritFoods().add("족발");
+			member.getFavoritFoods().add("피자");
+			member.getAdressHistory().add(new AdressEntity("old1", "old1", "old1"));
+			member.getAdressHistory().add(new AdressEntity("old2", "old2", "old2"));
 
-			em.persist(parent);
+
+			em.persist(member);
 			em.flush();
 			em.clear();
 
-			Parent findParent = em.find(Parent.class, parent.getId());
-			em.remove(findParent);
+			System.out.println("==========================================");
+			Member findMember = em.find(Member.class, member.getId());
+
+
+			// Adress에 equals가 오버라이딩이 되어있다는 가정하에 remove가 정상작동 됨
+
+
+
 
 			tx.commit();
 		} catch (Exception e) {

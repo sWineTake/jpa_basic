@@ -17,9 +17,8 @@ public class Delivery extends TBaseEntity{
 	@OneToOne(mappedBy = "delivery", fetch = FetchType.LAZY)
 	private Order order;
 
-	private String city;
-	private String street;
-	private String zipcode;
+	@Enumerated
+	private Adress adress;
 
 	@Enumerated(EnumType.STRING)
 	private DeliveryStatus deliveryStatus;
