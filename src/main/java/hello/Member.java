@@ -1,12 +1,7 @@
 package hello;
 
-import com.sun.istack.NotNull;
 import lombok.*;
-
 import javax.persistence.*;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
 
 @Getter
 @Setter
@@ -19,13 +14,9 @@ public class Member extends BaseEntity{
 	@Column(name = "USERNAME")
 	private String username;
 
-	// @OneToOne
-	// @JoinColumn(name = "LOCKER_ID")
-	@OneToOne(mappedBy = "member")
-	private Locker locker;
-
-	@OneToMany(mappedBy = "members")
-	private List<MemberProduct> memberProduct = new ArrayList<>();
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "TEAM_ID")
+	private Team team;
 
 	public Member() {
 	}

@@ -1,22 +1,24 @@
 package hello;
 
+
 import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
-import java.util.ArrayList;
-import java.util.List;
 
+@Entity
 @Getter
 @Setter
-@Entity
-public class Team {
+public class Child {
 	@Id @GeneratedValue(strategy = GenerationType.AUTO)
-	@Column(name = "TEAM_ID")
+	@Column(name = "CHILD_ID")
 	private Long id;
+
+	@Column(name = "NAME")
 	private String name;
 
-	@OneToMany(mappedBy = "team")
-	private List<Member> members = new ArrayList<>();
+	@ManyToOne
+	@JoinColumn(name = "PARENT_ID")
+	private Parent parent;
 
 }
