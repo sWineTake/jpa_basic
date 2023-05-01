@@ -10,6 +10,7 @@ import java.util.List;
 @Getter
 @Setter
 @Entity
+@DiscriminatorColumn
 @Inheritance(strategy = InheritanceType.JOINED)
 public abstract class Items extends TBaseEntity{
 

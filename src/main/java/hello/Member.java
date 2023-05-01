@@ -27,14 +27,8 @@ public class Member {
 	@Column(name = "FOOD_NAME")
 	private Set<String> favoritFoods = new HashSet<>();
 
-//	@ElementCollection
-//	@CollectionTable(name = "ADRESS",
-//			joinColumns = @JoinColumn(name = "MEMBER_ID"))
-//	private List<Adress> adressHistory = new ArrayList<>();
-
 	@OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
 	@JoinColumn(name = "MEMBER_ID")
 	private List<AdressEntity> adressHistory = new ArrayList<>();
-
 
 }

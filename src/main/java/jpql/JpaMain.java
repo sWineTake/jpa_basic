@@ -1,9 +1,10 @@
-package hello;
+package jpql;
+
+import hello.Member;
+import hello.Team;
+import jpql.entity.*;
 
 import javax.persistence.*;
-import javax.persistence.criteria.CriteriaBuilder;
-import javax.persistence.criteria.CriteriaQuery;
-import javax.persistence.criteria.Root;
 import java.util.List;
 
 public class JpaMain {
@@ -19,15 +20,34 @@ public class JpaMain {
 		tx.begin();
 		try {
 
-			Member member1 = new Member();
-			member1.setUsername("Lee");
-			em.persist(member1);
+			JpqlTeam team = new JpqlTeam();
+			team.setName("Team1");
+			em.persist(team);
 
-			// flush -> commit 또는 query 실행 시 flush가 실행됨
+			for (int i = 0; i< 10 ; i++) {
+				JpqlMember member = new JpqlMember();
 
-			List<Member> resultList = em.createNativeQuery("SELECT * FROM MEMBER", Member.class).getResultList();
-			for (Member member : resultList) {
-				System.out.println("member : " + member);
+				member.setAge(1 + i);
+				member.setUsername("member"+ i);
+				if (i >= 5) {
+					member.chageTeam(team);
+
+					member.setType(MemberType.USER);
+				} else {
+					member.setType(MemberType.ADMIN);
+				}
+				em.persist(member);
+			}
+
+			em.flush();
+			em.clear();
+
+			List<Object[]> resultList =
+				 em.createQuery("select 'a' || 'b', m.age from JPQL_MEMBER m")
+				.getResultList();
+
+			for (Object[] objects : resultList) {
+				System.out.println(" objects : " + objects[0] + ", " + objects[1]);
 			}
 
 			tx.commit();
